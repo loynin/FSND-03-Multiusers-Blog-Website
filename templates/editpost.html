@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-8 login-rect" >
+        <h2>Edit Post</h2>
+        <form method="post" action="/editpost/">
+            <table>
+                <tr>
+                    <td>
+                        <label>
+                            Subject
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="subject" value="{{post.subject}}">
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    <label>
+                        Blog
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="content" class="textpost">{{post.content}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="error">
+                        {{error}}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">
+                    <input type="hidden" value="{{post.key().id()}}" name="post_id">
+                    <button onclick="windows.location.href='/blog/{{post.key().id()}}'" class="btn btn-primary newpost-button" value="Cancel">Cancel</button>
+                    <input type="submit" class="btn btn-primary newpost-button" value="Update">
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-2">
+    </div>
+</div>
+{% endblock %}

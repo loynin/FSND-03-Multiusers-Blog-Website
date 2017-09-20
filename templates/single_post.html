@@ -1,0 +1,62 @@
+<script>
+        function myFunction(mypost) {
+        var txt;
+        var r = confirm("Are you sure you want to delete?");
+        if (r == true) {
+            window.location = "/deletepost/" + mypost;
+        } else {
+         txt = "You pressed Cancel!";
+        }
+        }
+    </script>
+<div class="row post-title-detail">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+         {{p.subject}}
+    </div>
+</div>
+<div class="row post-date">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        {{p.created.strftime("%A, %b %d, %Y")}} | BY {{p.username.upper()}} AT [{{p.created.strftime("%I:%M:%S %p")}}]
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <hr/>
+    </div>
+</div>
+<div class="row post-content">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        {{p._render_text | safe}}
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+
+
+                  
+        <hr />
+        {% if p.username != currentuser %}
+        {% if isuserlike %}
+        LIKED ({{likecount}}) 
+        {% else %}
+        <a class="like-unlike" href="/likepost?postid={{p.key().id()}}&username={{p.username}}">{{likecount}} LIKE</a> 
+        {% endif %}
+        {% else %}
+        <b class="like-ownerpost">LIKE ({{likecount}})</b> |
+        <a href="/editpost/{{p.key().id()}}">EDIT</a> |
+
+        <!--<a href="/deletepost/{{p.key().id()}}">DELETE</a> |-->
+        <a href="#" onclick="myFunction({{p.key().id()}})">DELETE</a> |
+        {% endif %}
+
+                  
+        <hr />
+
+    </div>
+</div>

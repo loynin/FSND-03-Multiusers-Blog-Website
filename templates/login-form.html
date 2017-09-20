@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-4">
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4 login-rect" >
+    <h2>Login</h2>
+    <form method="post">
+        <table>
+        <tr>
+            <td>
+                <label class="label">
+                    Username
+                </label>
+            </td>
+            <td>
+                <input type="text" name="username" value="{{username}}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="label">
+                    Password
+                </label>
+            </td>
+            <td>
+                <input type="password" name="password" value="" class="login-user">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <div class="error">
+                    {{error}}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td class="text-right">
+                <input type="submit" class="btn btn-primary login-signup-button" value="Login">
+            </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-4">
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4 signup-rect" >
+        <h2>
+            Signup
+        </h2>
+    <form method="post">
+        <table>
+        <tr>
+            <td>
+                <label class="label">
+                    Username
+                </label>
+            </td>
+            <td>
+                <input type="text" name="username" value="{{username}}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td class="error">
+                {{error_username}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="label">
+                    Password
+                </label>
+            </td>
+            <td>
+            <input type="password" name="password" value="">
+            </td>
+            </tr>
+        <tr>
+            <td>
+            </td>
+            <td class="error">
+                {{error_password}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="label">
+                    Verify Password
+                </label>
+            </td>
+            <td>
+                <input type="password" name="verify" value="">
+            </td>
+            </tr>
+        <tr>
+            <td>
+            </td>
+            <td class="error">
+                {{error_verify}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="label">
+                    Email (optional)
+                </label>
+            </td>
+            <td>
+            <input type="text" name="email" value="{{email}}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td class="error">
+                {{error_email}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" class="btn btn-primary login-signup-button" value="Sign Up">
+            </td>
+        </tr>
+        </table>
+        </form>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4"></div>
+    </div>
+{% endblock %}

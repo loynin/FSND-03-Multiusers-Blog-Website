@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render_singlepost(currentuser) | safe}}
+
+<script>
+        function deleteclick(postid,commentid) {
+        var txt;
+        var r = confirm("Are you sure you want to delete?");
+        if (r == true) {
+            window.location = "/deletecomment?postid=" + postid + "&commentid=" + commentid;
+        } else {
+         txt = "You pressed Cancel!";
+        }
+}
+</script>
+
+<div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12 login-rect">
+        <h2>Comment</h2>
+        <form method="post" action="/comment">
+            <table>
+
+
+                <tr>
+                    <td>
+                        {% if isedit == 'Yes'%}
+                            <textarea name="comment" class="textcomment">{{editcomment.comment}}</textarea>
+                        {% else %}
+                            <textarea name="comment" class="textcomment"></textarea>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="error">
+                            {{error}}
+                            {% if isedit == 'Yes'%}
+                            <input type="hidden" name="commentid" value="{{editcomment.key().id()}}">
+                            {% endif %}
+                            <input type="hidden" name="username" value="{{currentuser}}">
+                            <input type="hidden" name="postid" value="{{post.key().id()}}">
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">
+                        <button onclick="windows.location.href='/blog/{{post.key().id()}}'" class="btn btn-primary newpost-button" value="Cancel">Cancel</button>
+                        {% if isedit == 'Yes'%}
+                        <input type="hidden" name="editstatus" value="Yes">
+                        <input type="submit" class="btn btn-primary newpost-button" value="Update">
+                        {% else %}
+                        <input type="hidden" name="editstatus" value="No">
+                        <input type="submit" class="btn btn-primary newpost-button" value="Post">
+                        {% endif %}
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+  
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <table>
+            <tr>
+                <td class="commentuser">
+                    <!--{% if comments %}
+                    {{comments.count()}} COMMENTS:
+                    {% endif %}-->
+                </td>
+            </tr>
+            <tr>
+                <td class="rowspace"></td>
+            </tr>
+            {% for comment in comments %}
+            <tr>
+                <td class="commentuser">
+                    {{comment.username}} said...
+                </td>
+            </tr>
+            <tr>
+                <td class="commentcontent">
+                    {{comment.comment}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{comment.last_modified.strftime("%A %B %d, %Y at %I:%M:%S %p")}}
+                    {% if comment.username == currentuser %}
+                    <a href="/editcomment?postid={{post.key().id()}}&commentid={{comment.key().id()}}">EDIT</a> |
+                    <a href="#" onclick="deleteclick({{post.key().id()}},{{comment.key().id()}})">DELETE</a> 
+
+                <!--    <a href="/deletecomment?postid={{post.key().id()}}&commentid={{comment.key().id()}}">DELETE</a> |-->
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="rowspace"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

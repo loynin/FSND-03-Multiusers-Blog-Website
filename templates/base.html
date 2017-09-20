@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Steven Loy | Full Stack Web Developer | Nano Degree</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 login-area">
+                {% if user %}
+                {{user.name}} |  <a class="login-link" href="/blog/newpost">New Post</a>  |  <a class="login-link" href="/logout">logout</a>
+                {% else %}
+                <a class="login-link" href="/login">login</a>
+                |
+                <a class="login-link" href="/signup">signup</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12 horiruler">
+              <a href="/blog" class="main-title">
+                  <img src="/img/cover-photo.png" />
+              </a>
+             
+          </div>
+      </div>
+    
+    </header>
+  
+  
+  
+            {% block content %}
+            {% endblock %}
+            
+    </div>
+        
+</body>
+
+</html>
+
